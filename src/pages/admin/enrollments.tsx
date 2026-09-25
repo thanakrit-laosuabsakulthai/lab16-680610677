@@ -231,7 +231,7 @@ export default function AdminEnrollmentsPage() {
           </div>
           {/* เลือกวิชาก่อน แล้วเลือกนักศึกษาที่ยังไม่ได้ลงทะเบียนวิชานั้น (เลือกได้มากกว่า 1 คน) */}
           <DialogFooter>
-            <Button disabled={!formStudent || !formCourse}
+            <Button disabled={!formStudent || !formCourse || formStudent.length === 0}
               onClick={handleAddStudentsToCourse}
             >
               <PlusCircle className="h-4 w-4" />
