@@ -132,8 +132,6 @@ export default function AdminEnrollmentsPage() {
     const s = students.find((x) => x.studentId === studentId);
     return s ? `${s.firstName} ${s.lastName}` : "-";
   };
-  const titleOf = (courseCode: string) =>
-    courses.find((c) => c.courseCode === courseCode)?.courseTitle ?? "-";
   
   const anchor = useComboboxAnchor();
 

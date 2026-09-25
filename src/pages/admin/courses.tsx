@@ -41,13 +41,7 @@ import {
 } from "@/components/ui/alert-dialog"
 
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import {
   Table,
   TableBody,
@@ -63,7 +57,6 @@ import {
   ComboboxChip,
   ComboboxChips,
   ComboboxChipsInput,
-  ComboboxInput,
   ComboboxContent,
   ComboboxEmpty,
   ComboboxItem,
@@ -75,7 +68,6 @@ import {
 // inputs
 import { Input } from "@/components/ui/input";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEnrollmentStore } from "@/lib/enrollment-store";
 
 import {
@@ -86,48 +78,14 @@ import type { Course } from "@/lib/types";
 
 type Option = { value: string; label: string };
 
-function OptionSelect({
-  id,
-  options,
-  value,
-  onChange,
-  placeholder,
-}: {
-  id: string;
-  options: Option[];
-  value: string | null;
-  onChange: (value: string) => void;
-  placeholder?: string;
-}) {
-  return (
-    <Select
-      items={options}
-      value={value}
-      onValueChange={(v) => onChange(v as string)}
-    >
-      <SelectTrigger id={id} className="w-full">
-        <SelectValue placeholder={placeholder} />
-      </SelectTrigger>
-      <SelectContent>
-        {options.map((o) => (
-          <SelectItem key={o.value} value={o.value}>
-            {o.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  );
-}
-
 export default function AdminCoursesPage() {
-  const { students, courses, addCourse, removeCourse } = useEnrollmentStore();
+  const { courses, addCourse, removeCourse } = useEnrollmentStore();
 
   const [formInstructor, setFormInstructor] = useState<string[]>([]);
   const [instructorInput, setInstructorInput] = useState<string>("");
   const [formCourseTitle, setFormCourseTitle] = useState<string>("");
   const [formCourseCode, setFormCourseCode] = useState<string>("");
   const [enrollDialogOpen, setEnrollDialogOpen] = useState(false);
-  const [mode, setMode] = useState<"course" | "student">("course");
   
   const instructorOptions: Option[] = Array.from(
     new Set(courses.flatMap((c) => c.instructors ?? []))
@@ -170,10 +128,6 @@ export default function AdminCoursesPage() {
   };
 
   const rows = courses;
-
-  
-  const titleOf = (courseCode: string) =>
-    courses.find((c) => c.courseCode === courseCode)?.courseTitle ?? "-";
   
   const anchor = useComboboxAnchor();
 
