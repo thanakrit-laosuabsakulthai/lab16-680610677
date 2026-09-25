@@ -9,6 +9,8 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
+import Footer from "@/components/app-footer";
+
 export default function RootLayout() {
   return (
     <SidebarProvider>
@@ -25,7 +27,7 @@ export default function RootLayout() {
         <main className="flex-1 p-4">
           <Outlet />
         </main>
-        <footer className="border-t p-4 text-center text-xs text-muted-foreground"></footer>
+        <Footer firstName="ธนกฤต" lastName="เหล่าสืบสกุลไทย" studentId="680610677" />
       </SidebarInset>
     </SidebarProvider>
   );
